@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "cookie baker",
+  "version": "1.0.1",
+  "description": "transfer cookie from a domain to anther",
+  "icons": {"128": "128.png"},
+  "browser_action": {
+    "default_icon": {
+      "128": "128.png"
+    },
+    "default_title": "cookie baker",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "cookies",
+    "storage",
+    "<all_urls>",
+    "webNavigation"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
