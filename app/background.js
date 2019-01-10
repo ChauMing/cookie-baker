@@ -208,11 +208,12 @@ getRules().then(function (rules) {
     })
   });
 });
-chrome.runtime.onMessage.addListener(function (message) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   console.log(' receive message: ', message);
   if (message !== 'reloadRules') return;
   chrome.webNavigation.onBeforeNavigate.removeListener(listener);
   getRules().then(function (rules) {
+    sendResponse('success');
     listener = handleBeforeNavigate(rules);
     chrome.webNavigation.onBeforeNavigate.addListener(listener, {
       url: unique(rules.map(function (rule) {
@@ -223,6 +224,9 @@ chrome.runtime.onMessage.addListener(function (message) {
         };
       })
     });
+  }).catch(function (e) {
+    console.error(e);
+    sendResponse('error');
   });
   return true;
 });

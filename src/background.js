@@ -121,11 +121,12 @@ getRules().then((rules) => {
 
 
 
-chrome.runtime.onMessage.addListener(function (message) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   console.log(' receive message: ', message);
   if(message !== 'reloadRules') return;
   chrome.webNavigation.onBeforeNavigate.removeListener(listener);
   getRules().then((rules) => {
+    sendResponse('success')
     listener = handleBeforeNavigate(rules);
     chrome.webNavigation.onBeforeNavigate.addListener(
       listener,
@@ -133,6 +134,9 @@ chrome.runtime.onMessage.addListener(function (message) {
         url: unique(rules.map(rule => rule.to)).map(host => ({ hostSuffix: host }))
       }
     );
+  }).catch((e) => {
+    console.error(e);
+    sendResponse('error')
   });
   return true;
 })

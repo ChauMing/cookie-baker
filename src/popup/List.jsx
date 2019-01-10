@@ -20,7 +20,7 @@ export default class App extends Component {
   fetchRules = () => {
     Rule.get().then(rules => {
       this.setState({rules});
-    })
+    });
   }
 
 
@@ -33,20 +33,28 @@ export default class App extends Component {
     }
     chrome.tabs.create({
       url,
-    })
+    });
   }
 
+  disableAll = () => {
+    Rule.set(this.state.rules.map(it => ({
+      ...it,
+      enabled: false,
+    }))).then(this.fetchRules);
+  }
 
   renderHeader = () => {
     return (
       <header className="header">
-        <Button type="primary"><Link to="/edit">添加规则</Link></Button>
-        <Button style={{float: "right"}}>禁用所有规则</Button>
+        <Button type="primary">
+          <Link to="/edit">add rule</Link>
+        </Button>
+        <Button onClick={this.disableAll} style={{float: "right"}}>disable all</Button>
       </header>
     )
   }
   renderFooter = () => {
-    return <div>&copy;chauming</div>
+    return <div>&copy;vchauming@gmail.com</div>
   }
 
 
@@ -96,7 +104,7 @@ export default class App extends Component {
           bordered
           dataSource={state.rules}
           renderItem={this.renderItem}
-        ></List>
+        />
       </div>
     )
   }

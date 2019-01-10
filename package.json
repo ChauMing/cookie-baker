@@ -1,12 +1,12 @@
 {
   "name": "cookie-baker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "http://fengqiuming@git.sankuai.com/scm/~fengqiuming/sso-dev-chrome-extensions.git",
   "author": "fengqiuming <fengqiuming@meituan.com>",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js && zip -r cookie-baker.zip app",
     "dev": "NODE_ENV=develop webpack --watch --config webpack.config.js",
     "server": "webpack-dev-server --color"
   },
