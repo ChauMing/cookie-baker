@@ -1,6 +1,6 @@
 import Edit from './Edit';
 import List from './List';
-import Index from './popup/Index';
+import Index from './Index';
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
     routes: [
       {
         name: 'edit',
-        path: '/edit/?id',
+        path: '/edit/:id?',
         exact: true,
         component: Edit,
       },

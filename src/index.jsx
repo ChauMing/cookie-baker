@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 import routes from './popup/routes';
+import './index.less'
 
 const App = (props) => (
   <div>
@@ -19,8 +20,19 @@ const App = (props) => (
 );
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <App routes={routes} />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById('app')
 );
+
+if(module.hot) {
+  module.hot.accept(() => {
+    ReactDOM.render(
+      <BrowserRouter>
+        <App routes={routes} />
+      </BrowserRouter>,
+      document.getElementById('app')
+    );
+  })
+}
