@@ -1,39 +1,39 @@
 {
   "name": "cookie-baker",
   "version": "1.1.0",
-  "main": "index.js",
-  "repository": "http://fengqiuming@git.sankuai.com/scm/~fengqiuming/sso-dev-chrome-extensions.git",
+  "private": true,
+  "description": "transfer cookie from a domain to another",
   "author": "fengqiuming <fengqiuming@meituan.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack.config.js && zip -r cookie-baker.zip app",
-    "dev": "NODE_ENV=develop webpack --watch --config webpack.config.js",
-    "server": "webpack-dev-server --color"
+  "type": "module",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=18"
   },
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
-    "babel": "^6.23.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-import": "^1.11.0",
-    "babel-preset-react": "^6.16.0",
-    "css-loader": "^1.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^3.11.0",
-    "webpack-cli": "^3.1.2"
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && zip -r cookie-baker.zip dist",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.2.3",
-    "@babel/preset-react": "^7.0.0",
-    "antd": "^3.12.1",
-    "lodash": "^4.17.11",
-    "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "antd": "^3.26.20",
+    "classnames": "^2.5.1",
+    "mutationobserver-shim": "^0.3.7",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.28",
+    "@types/chrome": "^0.0.270",
+    "@types/react": "^16.14.60",
+    "@types/react-dom": "^16.9.24",
+    "@types/react-router-dom": "^4.3.5",
+    "@vitejs/plugin-react": "^4.3.1",
+    "less": "^4.2.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2"
   }
 }

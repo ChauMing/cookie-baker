@@ -1,8 +1,18 @@
+// 路由配置
+import type { ComponentType } from 'react';
 import Edit from './Edit';
 import List from './List';
 import Index from './Index';
 
-const routes = [
+export interface RouteConfig {
+  name: string;
+  path: string;
+  exact?: boolean;
+  component: ComponentType<any>;
+  routes?: RouteConfig[];
+}
+
+const routes: RouteConfig[] = [
   {
     name: 'index',
     path: '/',
@@ -19,9 +29,9 @@ const routes = [
         name: 'list',
         path: '/list',
         exact: true,
-        component: List
-      }
-    ]
+        component: List,
+      },
+    ],
   },
 ];
 

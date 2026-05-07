@@ -1,6 +1,9 @@
 .DS_Store
 .vscode
-.node_modules
+node_modules
+dist
 app.pem
 cookie-baker.crx
 cookie-baker.zip
+*.log
+.pnpm-store
