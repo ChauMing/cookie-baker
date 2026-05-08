@@ -1,9 +1,9 @@
 .header {
-  padding: 5px 15px;
+  padding: 5px 10px;
 }
 
 .edit-form {
-  padding: 5px 15px;
+  padding: 5px 10px;
 }
 
 .edit-form-item {
@@ -21,13 +21,62 @@
 
 .arrow-right {
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 6px;
+  color: #bbb;
+  flex: 0 0 auto;
 }
 
+// 规则表格：压缩单元格 padding，让内容区尽量占满
+.rule-table {
+  // small 尺寸下 antd3 默认 padding: 8px；进一步压到 6px 10px
+  .ant-table-tbody > tr > td {
+    padding: 6px 10px !important;
+  }
+
+  // 操作列：右对齐、子元素居中、垂直对齐
+  .rule-actions-cell {
+    text-align: right;
+  }
+}
+
+// from/to 展示容器：横向排列 + 截断
+.rule-pair {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+// 单个域名：超出宽度省略，鼠标悬停通过 Tooltip 显示完整文本
+.rule-host {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// 操作栏：edit / del / switch 横向 + 间距
+.rule-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+// 放开 Tooltip 的最大宽度，避免长 URL 被截断到 250px 处省略
+.rule-tooltip {
+  max-width: 520px;
+
+  .ant-tooltip-inner {
+    max-width: 520px;
+    word-break: break-all;
+    white-space: normal;
+  }
+}
 
 .list-operation {
   float: right;
-  .operation {
-
-  }
 }

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "cookie baker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "transfer cookie from a domain to another",
   "icons": { "128": "128.png" },
   "action": {
@@ -21,5 +21,13 @@
   "background": {
     "service_worker": "src/background.ts",
     "type": "module"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.ts"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
 }

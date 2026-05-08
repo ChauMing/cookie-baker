@@ -63,7 +63,7 @@ export default class EditPage extends Component<EditProps, EditState> {
 
   /** 统一的字段更新处理，避免每个 Input 重复写 setState */
   handleChange =
-    (field: keyof Pick<RuleType, 'from' | 'to' | 'cookieName'>) =>
+    (field: keyof Pick<RuleType, 'from' | 'to' | 'cookieName' | 'storageKeys'>) =>
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       const value = e.target.value;
       this.setState((prev) => ({
@@ -90,7 +90,7 @@ export default class EditPage extends Component<EditProps, EditState> {
             <Input
               value={rule.from}
               onChange={this.handleChange('from')}
-              placeholder="input cookie from"
+              placeholder="from URL, e.g. https://passport.example.com"
             />
           </FormItem>
           <FormItem
@@ -101,7 +101,7 @@ export default class EditPage extends Component<EditProps, EditState> {
             <Input
               value={rule.to}
               onChange={this.handleChange('to')}
-              placeholder="input cookie to"
+              placeholder="to URL, e.g. http://localhost:3000"
             />
           </FormItem>
           <FormItem
@@ -112,7 +112,18 @@ export default class EditPage extends Component<EditProps, EditState> {
             <Input
               value={rule.cookieName}
               onChange={this.handleChange('cookieName')}
-              placeholder="cookieName"
+              placeholder="cookieName (use * for all cookies)"
+            />
+          </FormItem>
+          <FormItem
+            className="edit-form-item"
+            validateStatus={this.error('storageKeys') ? 'error' : undefined}
+            help={this.error('storageKeys')}
+          >
+            <Input
+              value={rule.storageKeys || ''}
+              onChange={this.handleChange('storageKeys')}
+              placeholder="localStorage keys, comma separated (* for all)"
             />
           </FormItem>
           <Button type="primary" onClick={this.submit}>
